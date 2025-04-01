@@ -1,0 +1,38 @@
+body {
+    background-image: linear-gradient(blue, black);
+}
+
+
+h1 {
+    font-weight: bold;
+    color: white;
+    font-size: 32px;
+    text-decoration: underline;
+    text-align: center;
+}
+
+table{
+    width: 50%;
+    height: 50px;
+}
+
+table, th, td {
+    border: 2px solid;
+    text-align: center;
+    padding: 2px;
+    margin-inline: center;
+    color: white;
+}
+
+.buttons {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.table {
+    width:100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
