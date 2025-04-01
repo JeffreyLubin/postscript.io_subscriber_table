@@ -9,7 +9,7 @@ const options = {
   };
 
 function getSubscriberPage(page) { 
-    fetch(`https://api.postscript.io/api/v2/subscribers?page=${page}`, options)
+    fetch(`/api/subscribers?page=${page}`)
         .then(res => res.json())
         .then(data => {
             console.log(data);
@@ -60,7 +60,7 @@ function updateTag(subscriber_id){
         body: JSON.stringify({tags: [newTag]})
       };
       
-      fetch(`https://api.postscript.io/api/v2/subscribers/${subscriber_id}`, options)
+      fetch(`/api/subscribers?page=${page}`)
         .then(res => res.json())
         .then(res => {
             console.log(res);
