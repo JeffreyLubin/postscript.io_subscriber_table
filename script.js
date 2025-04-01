@@ -1,5 +1,6 @@
 let currentPage = 1;
 
+// Initializes the API
 const options = {
     method: 'GET',
     headers: {
@@ -8,6 +9,9 @@ const options = {
     }
   };
 
+// Pulls up any individual page, controlled by nextPage & prevPage
+// Provides API Responses in json, 
+// Adds data.subscribers to subscriberTable() function
 function getSubscriberPage(page) { 
     fetch(`https://api.postscript.io/api/v2/subscribers?page=${page}`, options)
         .then(res => res.json())
@@ -18,9 +22,12 @@ function getSubscriberPage(page) {
         .catch(err => console.error(err));
 }
 
+// Creates the actual <tbody> in index.html. Loads <td> values with API responses.
+// Creates 2 <td> values dedicated to input field and button.
 function subscriberTable(subscribers){
 
         const tableBody = document.getElementById("subscriber_table")
+        // tableBody.innerHTML needed to stop loading
         tableBody.innerHTML = ''
         
         subscribers.forEach(subscriber => {
@@ -36,15 +43,19 @@ function subscriberTable(subscribers){
             `
             tableBody.append(row);
         });
-
+        
+        // Disabled prevPage for Page 1, causing bugs.
         document.getElementById("prevPage").disabled = currentPage === 1;
 }
 
+// When button click in subscriberTable()...
+// updateTag() adds a new tag to subcriber_id.
 function updateTag(subscriber_id){
     const tagInput = document.getElementById(`tagInput_${subscriber_id}`);
     console.log(tagInput)
     const newTag = tagInput.value;
 
+    // Fires if nothing entered, but button clicked >:(
     if (!newTag){
         alert("Please enter a valid field.")
         return;
@@ -64,16 +75,19 @@ function updateTag(subscriber_id){
         .then(res => res.json())
         .then(res => {
             console.log(res);
+            // Reloads the page so you don't have to.
             location.reload();
         })
         .catch(err => console.error(err));
 }
 
+// Controls the nextPage button.
 document.getElementById("nextPage").addEventListener('click', function(){
     currentPage++
     getSubscriberPage(currentPage)
 })
 
+// Controls the prevPage button.
 document.getElementById("prevPage").addEventListener('click', function(){
     if (currentPage > 1){
         currentPage--
