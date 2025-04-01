@@ -1,11 +1,10 @@
 let currentPage = 1;
-const API_KEY = process.env.API_KEY;
 
 const options = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: API_KEY
+      Authorization: "Bearer sk_6cd914fbb2c682a0626e85de06faed40"
     }
   };
 
@@ -56,7 +55,7 @@ function updateTag(subscriber_id){
         headers: {
           accept: 'application/json',
           'content-type': 'application/json',
-          Authorization: API_KEY
+          Authorization: "Bearer sk_6cd914fbb2c682a0626e85de06faed40"
         },
         body: JSON.stringify({tags: [newTag]})
       };
