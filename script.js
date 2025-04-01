@@ -4,12 +4,12 @@ const options = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: `Bearer sk_6cd914fbb2c682a0626e85de06faed40`
+      Authorization: "Bearer sk_6cd914fbb2c682a0626e85de06faed40"
     }
   };
 
 function getSubscriberPage(page) { 
-    fetch(`/api/subscribers?page=${page}`)
+    fetch(`https://api.postscript.io/api/v2/subscribers?page=${page}`, options)
         .then(res => res.json())
         .then(data => {
             console.log(data);
@@ -60,7 +60,7 @@ function updateTag(subscriber_id){
         body: JSON.stringify({tags: [newTag]})
       };
       
-      fetch(`/api/subscribers?page=${page}`)
+      fetch(`https://api.postscript.io/api/v2/subscribers/${subscriber_id}`, options)
         .then(res => res.json())
         .then(res => {
             console.log(res);
